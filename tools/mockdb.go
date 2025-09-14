@@ -1,5 +1,7 @@
 package tools
 
+import "time"
+
 type mockDB struct {}
 
 // Mock user login details
@@ -32,4 +34,34 @@ var mockCoinDetails = map[string]CoinDetails {
 		Coins: 500,
 		Username: "giselle",
 	},
+}
+
+func (db *mockDB) GetUserLoginDetails(username string) *LoginDetails {
+	// Simulate db call
+	time.Sleep(time.Second * 1)
+
+	var clientData = LoginDetails{}
+	clientData, ok := mockLoginDetails[username]
+	if !ok {
+		return nil
+	}
+
+	return &clientData
+}
+
+func (db *mockDB) GetUserCoins(username string) *CoinDetails {
+	// Simulate db call
+	time.Sleep(time.Second * 1)
+
+	var clientData = CoinDetails{}
+	clientData, ok := mockCoinDetails[username]
+	if !ok {
+		return nil
+	}
+
+	return &clientData
+}
+
+func (db *mockDB) SetupDatabase() error {
+	return nil
 }
