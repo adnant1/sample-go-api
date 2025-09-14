@@ -16,14 +16,14 @@ type CoinDetails struct {
 }
 
 type DatabaseInterface interface {
-	GetUserLoginDetails(username string) *loginDetails
-	GetUserCoins(username string) *coinDetails
+	GetUserLoginDetails(username string) *LoginDetails
+	GetUserCoins(username string) *CoinDetails
 	SetupDatabase() error
 }
 
 func NewDatabase() (*DatabaseInterface, error) {
 
-	var database DatabaseInterfact = &mockDB{}
+	var database DatabaseInterface = &mockDB{}
 
 	var err error = database.SetupDatabase()
 	if err != nil {
