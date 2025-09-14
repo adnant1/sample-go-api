@@ -33,7 +33,7 @@ func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Query the database for user coin details
-	var coinDetails *tools.coinDetails
+	var coinDetails *tools.CoinDetails
 	coinDetails = (*database).GetUserCoins(params.Username)
 	if coinDetails == nil {
 		api.InternalErrorHandler(w)
@@ -41,7 +41,7 @@ func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Create response
-	var res = api.CoinBalanceReponse{
+	var res = api.CoinBalanceResponse{
 		Code: http.StatusOK,
 		Balance: (*coinDetails).Coins,
 	}
